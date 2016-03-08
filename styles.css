@@ -26,3 +26,7 @@ body, a:link, a:visited, a:active{
   border-radius:10px;
   position:absolute;
 }
+.lineup {
+  border: 50px solid red;
+  vertical-align: ;
+}

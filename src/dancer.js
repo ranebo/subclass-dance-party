@@ -71,6 +71,13 @@ Dancer.prototype.setPosition = function(top, left) {
   this.$node.css(styleSettings);
 };
 
+Dancer.prototype.lineUp = function() {
+  //window.dancers = []
+  //set height to middle of screen
+  this.$node.addClass(lineup);
+
+};
+
 
 
 
