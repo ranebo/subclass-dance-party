@@ -2,6 +2,7 @@ var MovingDancer = function(top, left, timeBetweenSteps) {
   Dancer.apply(this, arguments);
   this.top = top;
   this.left = left;
+  this.$node = $('<span><img src= "src/assets/dancers3.gif"></span>');
 };
 // console.log(Dancer.prototype.step);
 MovingDancer.prototype = Object.create(Dancer.prototype);
@@ -25,7 +26,7 @@ MovingDancer.prototype.step = function() {
   };
   this.top = top;
   this.left = left;
-
+  this.$node.toggle();
   this.$node.css(styleSettings);
 
 };
