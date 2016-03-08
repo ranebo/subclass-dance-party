@@ -14,7 +14,6 @@ ColorfulDancer.prototype.step = function() {
   // toggle() is a jQuery method to show/hide the <span> tag.
   // See http://api.jquery.com/category/effects/ for this and
   // other effects you can use on a jQuery-wrapped html tag.
-  this.$node.toggle();
   var colors = ['red', 'blue', 'pink', 'purple', 'magenta', 'green', 'orange', 'yellow', 'cyan', 'black'];
   var color = colors[Math.floor(Math.random() * 10)];
 

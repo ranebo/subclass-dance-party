@@ -4,12 +4,22 @@ body, html{
 body{
   margin: 0px;
   background-color:#444;
+  background-image: url("src/assets/mars-background.jpg");
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
   font-size: 18px;
 }
 body, a:link, a:visited, a:active{
   color: lightblue;
 }
-
+img {
+  height: 250px;
+  width: auto;
+  border: 0;
+  -webkit-transition: -webkit-transform .5s ease-in-out;
+  transition: transform .5s ease-in-out;
+}
 .title, .addDancerButton{
   padding:5px 12px;
   float:right;
@@ -22,11 +32,19 @@ body, a:link, a:visited, a:active{
   background-color: #777;
 }
 .dancer{
-  border:10px solid red;
+/*  border:10px solid red;*/
   border-radius:10px;
   position:absolute;
 }
-.lineup {
-  border: 50px solid red;
-  vertical-align: ;
+
+img:hover {
+  -webkit-transform: rotate(360deg);
+  transform: rotate(360deg);
 }
+
+/*.lineup {
+  position: fixed;
+  top: 0px;
+  left: 0px;
+}*/
+

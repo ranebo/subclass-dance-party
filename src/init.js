@@ -23,21 +23,46 @@ $(document).ready(function() {
     // make a dancer with a random position
 
     var dancer = new dancerMakerFunction(
-      $("body").height() * Math.random(),
-      $("body").width() * Math.random(),
+      ($("body").height() - 100) * Math.random(),
+      ($("body").width() - 100) * Math.random(),
       Math.random() * 1000
     );
     $('body').append(dancer.$node);
     window.dancers.push(dancer.$node);
   });
 
-
   $('.lineUpButton').on('click', function(event) {
+    var leftPosition = 0;
     for (var i = 0; i < window.dancers.length; i++) {
-      window.dancers[i].css({border: '50px solid blue'});
+      window.dancers[i].css({top: 500, left: leftPosition});
+      leftPosition = leftPosition + 100;
+      window.dancers[i].addClass('lineup');
       //dancer.$node.addClass
     }
+    var leftPosition = 0;
   });
+
+  $('.randomizeButton').on('click', function(event) {
+    for (var i = 0; i < window.dancers.length; i++) {
+    var top = ($("body").height() - 100) * Math.random();
+    var left = ($("body").width() - 100) * Math.random();
+      window.dancers[i].css({top: top, left: left});
+      window.dancers[i].removeClass('lineup');
+      //dancer.$node.addClass
+    }
+
+    // $(this).setPosition(top, left);
+
+      //SET ANOTHER POSITION
+    // var position = {
+    //   top: 100,
+    //   left: 100
+    // };
+    // $(this).css(position);
+
+    //  $(this).animate(position, 5000, function() {});
+  });
+
 
 });
 
