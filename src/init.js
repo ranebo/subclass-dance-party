@@ -23,8 +23,8 @@ $(document).ready(function() {
     // make a dancer with a random position
 
     var dancer = new dancerMakerFunction(
-      ($("body").height() - 100) * Math.random(),
-      ($("body").width() - 100) * Math.random(),
+      ($('body').height() - 100) * Math.random(),
+      ($('body').width() - 100) * Math.random(),
       Math.random() * 1000
     );
     $('body').append(dancer.$node);
@@ -42,31 +42,63 @@ $(document).ready(function() {
       var top = $(this).attr('top');
       var left = $(this).attr('left');
 
+      var originalPosition = {
+        top: top,
+        left: left
+      };
 
       var position = {
         top: top,
         left: left
       };
+
       var shortestDistance = 10000;
+      var partner, clickedDancer;
+
       for (var i = 0; i < window.dancers.length; i++) {
         var a = Math.abs(Math.pow((window.dancers[i].top - top), 2));
         var b = Math.abs(Math.pow((window.dancers[i].left - left), 2));
         var c = Math.sqrt(a + b);
+
+        if (c === 0) {
+          clickedDancer = window.dancers[i];
+        }
 
         if (c !== 0) {
           if (c < shortestDistance) {
             shortestDistance = c;
             position.top = window.dancers[i].top;
             position.left = window.dancers[i].left + 100;
+            partner = window.dancers[i];
           }
         }
       }
 
-      // window.dancers.forEach(function(item) {
-      //   console.log(item.top);
-      // });
-      $(this).animate(position);
+      $(this).animate(position, function() {
 
+        $(this).animate({top: '-=100', opacity: '0.4'}, 'fast');
+        $(this).animate({top: '+=100', opacity: '0.4'}, 'fast');
+        $(this).animate({top: '-=100', opacity: '0.8'}, 'fast');
+        $(this).animate({top: '+=100', opacity: '0.8'}, 'fast');
+        $(this).animate({top: '-=100', opacity: '1'}, 'fast');
+        $(this).animate({top: '+=100', opacity: '1'}, 'fast');
+
+        partner.$node.animate({top: '-=100', opacity: '0.4'}, 'fast');
+        partner.$node.animate({top: '+=100', opacity: '0.4'}, 'fast');
+        partner.$node.animate({top: '-=100', opacity: '0.8'}, 'fast');
+        partner.$node.animate({top: '+=100', opacity: '0.8'}, 'fast');
+        partner.$node.animate({top: '-=100', opacity: '1'}, 'fast');
+        partner.$node.animate({top: '+=100', opacity: '1'}, 'fast', function() {
+          clickedDancer.$node.animate(originalPosition);
+        });
+      });
+
+
+      //to update to new position if needed
+      // clickedDancer.top = partner.top;
+      // clickedDancer.left = partner.left;
+      // $(this).attr("top", partner.top);
+      // $(this).attr("left", partner.left);
 
     });
 
