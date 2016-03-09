@@ -1,3 +1,4 @@
+//dancing robot
 var RobotDancer2 = function(top, left, timeBetweenSteps) {
   Dancer.apply(this, arguments);
   // this.top = top;

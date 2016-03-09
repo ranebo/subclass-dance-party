@@ -1,3 +1,4 @@
+//peace robot
 var RobotDancer3 = function(top, left, timeBetweenSteps) {
   Dancer.apply(this, arguments);
   // this.top = top;

@@ -28,15 +28,57 @@ $(document).ready(function() {
       Math.random() * 1000
     );
     $('body').append(dancer.$node);
-    window.dancers.push(dancer.$node);
+    window.dancers.push(dancer);
+
+
+
+    // var arrayOfPositions = [];
+    // for (var i = 0; i < window.dancers.length; i++) {
+
+    // }
+
+    dancer.$node.on('click', function(event) { //go query DOM for every element w/ class dancer
+
+      var top = $(this).attr('top');
+      var left = $(this).attr('left');
+
+
+      var position = {
+        top: top,
+        left: left
+      };
+      var shortestDistance = 10000;
+      for (var i = 0; i < window.dancers.length; i++) {
+        var a = Math.abs(Math.pow((window.dancers[i].top - top), 2));
+        var b = Math.abs(Math.pow((window.dancers[i].left - left), 2));
+        var c = Math.sqrt(a + b);
+
+        if (c !== 0) {
+          if (c < shortestDistance) {
+            shortestDistance = c;
+            position.top = window.dancers[i].top;
+            position.left = window.dancers[i].left + 100;
+          }
+        }
+      }
+
+      // window.dancers.forEach(function(item) {
+      //   console.log(item.top);
+      // });
+      $(this).animate(position);
+
+
+    });
+
+
   });
 
   $('.lineUpButton').on('click', function(event) {
     var leftPosition = 0;
     for (var i = 0; i < window.dancers.length; i++) {
-      window.dancers[i].css({top: 500, left: leftPosition});
+      window.dancers[i].$node.css({top: 500, left: leftPosition});
       leftPosition = leftPosition + 100;
-      window.dancers[i].addClass('lineup');
+      window.dancers[i].$node.addClass('lineup');
       //dancer.$node.addClass
     }
     var leftPosition = 0;
@@ -44,24 +86,15 @@ $(document).ready(function() {
 
   $('.randomizeButton').on('click', function(event) {
     for (var i = 0; i < window.dancers.length; i++) {
-    var top = ($("body").height() - 100) * Math.random();
-    var left = ($("body").width() - 100) * Math.random();
-      window.dancers[i].css({top: top, left: left});
-      window.dancers[i].removeClass('lineup');
+      var top = ($("body").height() - 100) * Math.random();
+      var left = ($("body").width() - 100) * Math.random();
+      window.dancers[i].$node.css({top: top, left: left});
+      window.dancers[i].$node.removeClass('lineup');
       //dancer.$node.addClass
     }
-
-    // $(this).setPosition(top, left);
-
-      //SET ANOTHER POSITION
-    // var position = {
-    //   top: 100,
-    //   left: 100
-    // };
-    // $(this).css(position);
-
-    //  $(this).animate(position, 5000, function() {});
   });
+
+    
 
 
 });
