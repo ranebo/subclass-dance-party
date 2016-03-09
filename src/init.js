@@ -23,9 +23,9 @@ $(document).ready(function() {
     // make a dancer with a random position
 
     var dancer = new dancerMakerFunction(
-      ($('body').height() - 100) * Math.random(),
-      ($('body').width() - 100) * Math.random(),
-      Math.random() * 1000
+      ($('body').height() - 200) * Math.random(),
+      ($('body').width() - 200) * Math.random(),
+      Math.random() * 1000 + 1000
     );
     $('body').append(dancer.$node);
     window.dancers.push(dancer);
@@ -118,8 +118,8 @@ $(document).ready(function() {
 
   $('.randomizeButton').on('click', function(event) {
     for (var i = 0; i < window.dancers.length; i++) {
-      var top = ($("body").height() - 100) * Math.random();
-      var left = ($("body").width() - 100) * Math.random();
+      var top = ($('body').height() - 100) * Math.random();
+      var left = ($('body').width() - 100) * Math.random();
       window.dancers[i].$node.css({top: top, left: left});
       window.dancers[i].$node.removeClass('lineup');
       //dancer.$node.addClass
